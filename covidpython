@@ -1,0 +1,150 @@
+import time
+#import webbrowser
+#webbrowser.open('https://www.cvs.com/vaccine/intake/store/covid-s', new=2)
+
+
+from pynput.mouse import Button, Controller ,Listener
+a_mouse = Controller()
+from pynput.keyboard import Key, Controller,Listener
+keyboard = Controller()
+import time
+import pyautogui
+import cv2 
+from PIL import ImageGrab
+from PIL import Image
+import PIL.Image
+
+from pytesseract import image_to_string
+import pytesseract
+
+time.sleep(4)
+print('The current pointer position is {0}'.format(a_mouse.position))
+
+#move mouse position
+#time.sleep(4)
+#a_mouse.position=(1044.56 , 1060.42)
+#time.sleep(3)
+#a_mouse.click(Button.left,1)
+a_mouse.position=(636,539 ) #1063 488 q1
+time.sleep(2)
+a_mouse.click(Button.left,1)
+print('The current pointer position is {0}'.format(a_mouse.position))
+time.sleep(2)
+a_mouse.position=(640,715) #1063 655 q1  636 690
+a_mouse.click(Button.left,1)
+print('The current pointer position is {0}'.format(a_mouse.position))
+time.sleep(3)
+a_mouse.position=(640,911)  #1063 838  q2
+a_mouse.click(Button.left,1)
+print('The current pointer position is {0}'.format(a_mouse.position))
+
+a_mouse.position=(885,973) #1377 904  wsbmit
+time.sleep(2)
+a_mouse.click(Button.left,2)
+#2ND OAGE
+
+time.sleep(2)
+a_mouse.position=(650,420) #1073,296
+a_mouse.click(Button.left,1)
+time.sleep(2)
+a_mouse.position=(923,529) #1357 502 534
+time.sleep(2)
+a_mouse.click(Button.left,1)
+print('The next pointer position is {0}'.format(a_mouse.position))
+time.sleep(2)
+#3RD PAGE
+
+a_mouse.position=(807,425)  #1337 472
+a_mouse.click(Button.left,1)
+time.sleep(2)
+keyboard.press('c')
+keyboard.release('c')
+time.sleep(4)
+keyboard.press(Key.enter)
+time.sleep(2)
+a_mouse.position=(880,496)  #1321 538
+time.sleep(3)
+a_mouse.click(Button.left,1)
+time.sleep(4)
+print('what is age is {0}'.format(a_mouse.position))
+
+#PAGE 4
+a_mouse.position=(667,665)  #1109 538
+time.sleep(2)
+a_mouse.click(Button.left,1)
+keyboard.press('5')
+keyboard.press('0')
+keyboard.press(Key.enter)
+time.sleep(2)
+#non of above'
+#a_mouse.position=(1065,785)
+#'65'
+a_mouse.position=(667,665) 
+a_mouse.click(Button.left,1)
+time.sleep(2)
+#affirm
+a_mouse.position=(649,780) #1066 856
+a_mouse.click(Button.left,1)
+time.sleep(2)
+#confirm
+a_mouse.position=(952,895)  #1359 965  645 888
+a_mouse.click(Button.left,1)
+time.sleep(2)
+
+#PAGE 5
+#confirm
+a_mouse.position=(998,772) #1334 702
+a_mouse.click(Button.left,1)
+time.sleep(5)
+print('The current pointer position is {0}'.format(a_mouse.position))
+
+#PAGE 6
+a_mouse.position=(931,716) #1322 694
+a_mouse.click(Button.left,1)
+a_mouse.position=(905,601) #1086 576
+
+time.sleep(2)
+a_mouse.click(Button.left,1)
+keyboard.press('o')
+keyboard.press('r')
+keyboard.press('a')
+keyboard.press('n')
+keyboard.press('g')
+keyboard.press('e')
+keyboard.press(',')
+keyboard.press('C')
+keyboard.press('A')
+keyboard.press(Key.enter)
+time.sleep(5)
+print('The current pointer position is {0}'.format(a_mouse.position))
+# Find Screen Error
+a_mouse.position=(1264,601) #1304 957
+a_mouse.click(Button.left,1)
+#Read Screen None of your selected vaccines are available nearby
+time.sleep(3)
+cap = ImageGrab.grab(bbox =(670, 710, 1230, 781))
+time.sleep(2)
+print(pytesseract.image_to_string(cap))
+
+
+import smtplib
+import tweepy
+# Authenticate to Twitter
+auth = tweepy.OAuthHandler(",")
+auth.set_access_token(",")
+
+api = tweepy.API(auth)
+
+try:
+    api.verify_credentials()
+    print("Authentication OK")
+except:
+    print("Error during authentication")
+txt=pytesseract.image_to_string(cap)
+x = txt.find("dose date")
+print(x)
+if x != 0 :
+    print("found")
+    api = tweepy.API(auth, wait_on_rate_limit=True,
+    wait_on_rate_limit_notify=True)
+    api.update_status("Find Vaccine Spot  from Tweepy Python Yes")
